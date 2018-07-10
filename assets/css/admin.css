@@ -1,0 +1,34 @@
+.login-form{
+    margin-left:25%;width:50%;margin-right:25%;border:1px solid #26a69a;
+    background: gradient(top, #26a69a,  #17635c);
+    background: #26a69a;
+    background: -webkit-linear-gradient(top, #26a69a, #17635c);
+    background: -o-linear-gradient(top, #26a69a, #17635c);
+    background: -moz-linear-gradient(top, #26a69a,  #17635c);
+    background: linear-gradient(top, #26a69a, #17635c);
+    font-family: Poppins-Medium;
+    margin-top:100px;
+    z-index:100;position: fixed;
+    box-shadow: 0px 0px 20px 1px rgba(15, 15, 15, 0.62);
+    border-radius:10px;color:white;
+}
+.form-area{margin-left:10%;margin-right:10%;width:80%;}
+.login100-form-btn {font-family: Poppins-Medium;font-size: 20px; color:#26a69a;font-weight: bolder;
+margin-bottom:20px;line-height: 1.2;display: -webkit-box;display: -webkit-flex;display: -moz-box;
+display: -ms-flexbox; display: flex;justify-content: center;align-items: center;padding: 0 20px;
+min-width: 120px;height: 50px;border-radius: 25px; background:white;background: -webkit-linear-gradient(bottom,white,#dbeded );
+background: -o-linear-gradient(bottom, white,#dbeded);background: -moz-linear-gradient(bottom, white,#dbeded );
+background: linear-gradient(bottom, white, #dbeded );position: relative;z-index: 1;}
+.login100-form-btn:hover{background:#ccc;}
+
+@media screen and (max-width:768px){
+    .change-back-img{display: none;}
+    .size-change {
+        width: 100% !important;
+        margin-left: 0% !important;
+    }
+    .login-form {
+        margin-left: 7.5%;
+        width: 85%;
+        margin-right: 7.5%;}
+    }
