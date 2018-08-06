@@ -1,0 +1,22 @@
+.click_link > a{
+background-color: #00AAFF;
+border-color: #00a0f0;
+font-weight: bolder;
+margin-left: 5px;
+margin-right: 5px;
+padding-top: 1px;
+padding-left: 8px;
+padding-right: 8px;
+color: white;
+border-radius:3px;
+}
+.btn-personal:hover{color:black;}
+.active-btn{background: #00AAFF !important;color:white !important;}
+.btn-personal{border-radius: 0%;
+    color: #00AAFF;
+    background: white;
+    font-weight: bolder;
+    padding: 1%;
+    border: none;cursor:pointer;
+    margin-left: 2px;
+    margin-right: 2px;}

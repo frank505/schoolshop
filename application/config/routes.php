@@ -49,6 +49,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route["admin/categories"] = "admin_categories";
+$route["admin/slideshow"] = "admin_slideshow";
+$route["admin/settings"] = "admin/settings";
+$route["admin/categories/(:any)"] = "admin_categories/index/$1";
+$route["admin/view-products"] = "products/view_products";
+$route["admin/view-products/(:any)"] = "products/view_products/$1";
+$route["admin/update-products/(:any)"] = "products/update_products/$1";
+$route["admin/add-products"] = "products";
+$route["admin/buy-products/(:any)"] = "buy_products/index/$1";
+$route["admin/purchase-details"] = "admin_purchase/index";
+$route["admin/purchase-details/(:any)"] = "admin_purchase/index/$1";
+$route["home/buy-products/(:any)"] = "buy_products/index/$1";
+$route["home/products"] = "home/products";
+$route["home/products/(:any)"] = "home/products/$1";
+$route["home/products-category/(:any)"] = "home/products_category_section/$1";
+$route["home/products-category/(:any)/(:any)"] = "home/products_category_section/$1/$1";
+$route["home/product-details/(:any)"] = "home/product_details/$1";    
+$route['default_controller'] = 'home/index';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = TRUE;

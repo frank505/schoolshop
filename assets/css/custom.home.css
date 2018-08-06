@@ -1,0 +1,7 @@
+.pagination_links_created > a{
+    background: rgb(63, 81, 181) !important;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    color:white;
+}
