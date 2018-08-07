@@ -29,20 +29,20 @@
 
 
              <div data-id="update-admin-profile" class="hide-area" style="display:none;">
-                  
-                
-             <form action="" method="post" role="form" class="contactForm" >
-             <div class="notification-registration" id="sent_indicator_update">  </div>     
 
-             <div class="notification-registration" id="add-indicator">  </div>          
-                <?php    
-                 foreach ($details as $key => $value) {
-                  
-                ?>            
+
+             <form action="" method="post" role="form" class="contactForm" >
+             <div class="notification-registration" id="sent_indicator_update">  </div>
+
+             <div class="notification-registration" id="add-indicator">  </div>
+                <?php
+foreach ($details as $key => $value) {
+
+    ?>
              <div class="form-group">
-<input id="update_username" placeholder="enter your username" class="form-control" value="<?php echo $value->username;?>" type="text">
+<input id="update_username" placeholder="enter your username" class="form-control" value="<?php echo $value->username; ?>" type="text">
    </div>
-   
+
    <div class="form-group">
 
    <input id="update_password" placeholder="enter your password" class="form-control" type="password">
@@ -53,8 +53,8 @@
    <input id="update_confirm" class="form-control" placeholder="confirm password here" type="password">
    </div>
 
-                 <?php  } ?>                                                        
-          
+                 <?php }?>
+
                                       <button type="button" id="update-admin" class="btn btn-primary ">Submit</button>
                                       <button type="button" id="clear-update" class="btn btn-primary pull-right ">clear</button>
                                   </form>
@@ -82,13 +82,13 @@
 
 
 
-              
+
               <div data-id="add-admin" class="hide-area" style="display:block;">
-              
+
               <form action="" method="post" role="form" class="contactForm" >
 
-<div class="notification-registration" id="sent_indicator_additional">  </div>          
-               
+<div class="notification-registration" id="sent_indicator_additional">  </div>
+
 <div class="form-group">
 <input id="add_username" placeholder="enter your username" class="form-control"  type="text">
 </div>
@@ -105,18 +105,18 @@
 <div class="form-group">
 <input id="add_confirm" class="form-control" placeholder="confirm password here" type="password">
 </div>
-                                                            
+
 
                          <button type="button" id="btn-add-admin" class="btn btn-primary ">Submit</button>
                          <button type="button" id="btn-clear-admin" class="btn btn-primary pull-right ">clear</button>
                      </form>
 
 
-              
-              
+
+
               </div>
 
-              
+
 
 
 
