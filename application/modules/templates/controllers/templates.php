@@ -1,5 +1,5 @@
 <?php
-/* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
+/* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI PLEASE NOTE*/
 defined('BASEPATH') or exit('No direct script access allowed');
 class templates extends MX_Controller
 {
