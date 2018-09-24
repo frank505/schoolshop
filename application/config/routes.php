@@ -62,6 +62,7 @@ $route["admin/purchase-details"] = "admin_purchase/index";
 $route["admin/purchase-details/(:any)"] = "admin_purchase/index/$1";
 $route["home/buy-products/(:any)"] = "buy_products/index/$1";
 $route["home/products"] = "home/products";
+$route["home/about"] = "home/about_view" ;
 $route["home/products/(:any)"] = "home/products/$1";
 $route["home/products-category/(:any)"] = "home/products_category_section/$1";
 $route["home/products-category/(:any)/(:any)"] = "home/products_category_section/$1/$1";

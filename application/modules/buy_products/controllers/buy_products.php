@@ -2,23 +2,26 @@
 /* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once APPPATH ."libraries/Page_Settings.php"; 
+
 class buy_products extends MX_Controller
 {
    public function __construct()
    {
     parent::__construct();
-    $this->load->module("products");
+    $this->load->module(["products","templates"]);
     $this->load->helper('security');
     $this->load->library("pagination");
+    $this->load->model("buy_product_mdl");
    }
 
   public function index($product_id)
   {  
-    $products_category["categories"] =  $this->products_category();
-    $this->load->view("templates/header",$products_category);
-    $this->load->view("body_buy_products");
-    $this->load->view("templates/footer");
-  }
+    $data["categories"] =  $this->products_category();
+    $data_send = Page_Settings::set_page('body_buy_products', $data, '' , 'Welcome Once Again', 'buy_products');
+    $this->templates->frontend($data_send);   
+
+}
 
 
   /*
@@ -27,7 +30,7 @@ class buy_products extends MX_Controller
      */
     public function products_category()
     {
-     $this->load->model("buy_product_mdl");
+     
      $value = $this->buy_product_mdl->fetch_categories();
      return $value;
     }
@@ -55,7 +58,7 @@ class buy_products extends MX_Controller
     }else if(!(is_numeric($phone))){
         echo "this phone number is invalid";
     }else{
-        $this->load->model("buy_product_mdl");
+        
        $seller_number = $this->buy_product_mdl->return_seller_number($id);
          $seller_location = $this->buy_product_mdl->return_seller_location($id);
          $price = $this->buy_product_mdl->return_price($id);

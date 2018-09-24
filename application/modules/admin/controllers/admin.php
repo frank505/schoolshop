@@ -2,6 +2,8 @@
 /* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once APPPATH ."libraries/Page_Settings.php";
+
 class admin extends MX_Controller
 {
     
@@ -11,10 +13,11 @@ class admin extends MX_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->module("admin");
+        $this->load->module(["admin","templates"]);
         $this->load->helper('cookie');
         $this->load->library(array('session'));
         $this->load->helper('security');
+        $this->load->model("admin/admin_mdl");
     }
  
       
@@ -24,16 +27,15 @@ class admin extends MX_Controller
      */
     public function index()
     {
-      $counter["count_products"] = $this->count_products();
-      $counter["count_categories"] = $this->count_categories();
-      $counter["count_purchased_products"] = $this->count_purchased_products();
-      $counter["count_pending_products"] = $this->count_pending_products();
-      $total["total_values"] = $this->return_total_new_buyers();
+      $data["count_products"] = $this->count_products();
+      $data["count_categories"] = $this->count_categories();
+      $data["count_purchased_products"] = $this->count_purchased_products();
+      $data["count_pending_products"] = $this->count_pending_products();
+      $data["total_values"] = $this->return_total_new_buyers();
      if($this->checkSessionOrCookie()==TRUE){
-      $this->load->view("templates/header_admin", $total);
-      $this->load->view("body", $counter);
-      $this->load->view("templates/footer_admin");
-     }else if($this->checkSessionOrCookie()==FALSE){
+      $data_send = Page_Settings::set_page('body', $data, '' , 'Welcome Once Again', 'admin');
+      $this->templates->backend($data_send); 
+       }else if($this->checkSessionOrCookie()==FALSE){
       redirect(base_url()."admin/login");      
       }
 
@@ -75,12 +77,11 @@ class admin extends MX_Controller
 
     public function settings()
     {
-      $user_detail["details"] = $this->return_user_detail();
-      $total["total_values"] = $this->return_total_new_buyers();
+      $data["details"] = $this->return_user_detail();
+      $data["total_values"] = $this->return_total_new_buyers();
       if($this->checkSessionOrCookie()==TRUE){
-        $this->load->view("templates/header_admin",$total);
-        $this->load->view("body_settings",$user_detail);
-        $this->load->view("templates/footer_admin");
+        $data_send = Page_Settings::set_page('body_settings', $data, '' , 'Welcome Once Again', 'admin');
+        $this->templates->backend($data_send); 
        }else if($this->checkSessionOrCookie()==FALSE){
         redirect(base_url()."admin/login");      
         }
@@ -93,7 +94,7 @@ class admin extends MX_Controller
      */
       public function checkSessionOrCookie()
     {
-      $this->load->model("admin/admin_mdl");
+      
      @$logged_in = $_SESSION["logged_in"];
       @$email  = $_SESSION["email"];
           if(isset($email) && isset($logged_in) ){
@@ -133,27 +134,22 @@ class admin extends MX_Controller
   
   public function login()
   {
-    $this->load->model("admin/admin_mdl");
+    $data_send = Page_Settings::set_page('login_body', NULL, '' , 'Welcome Once Again', 'admin');
+    
     $this->form_validation->set_rules('email', 'email', 'required|valid_email');
     $this->form_validation->set_rules('password', 'password', 'required|trim|min_length[6]');
     if($this->form_validation->run()==FALSE){
-    $this->load->view("templates/header_admin_login");
-    $this->load->view("login_body");
-    $this->load->view("templates/footer_admin_login");
+      $this->templates->middleend($data_send); 
     }else{
       $username = $this->input->post("email");
       $password = $this->input->post("password");
      $val =  $this->admin_mdl->login($username,$password);
      if($val==FALSE){
     echo "<script>alert('incorrect email or password entered')</script>";
-    $this->load->view("templates/header_admin_login");
-    $this->load->view("login_body");
-    $this->load->view("templates/footer_admin_login");
+    $this->templates->middleend($data_send); 
      }
      else if($val==NULL){
-      $this->load->view("templates/header_admin_login");
-      $this->load->view("login_body");
-      $this->load->view("templates/footer_admin_login");
+      $this->templates->middleend($data_send); 
      echo "<script>alert('incorrect username or email entered')</script>";
      }else{
        $hashed_username = md5($username);

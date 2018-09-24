@@ -1,12 +1,4 @@
 <?php
-$this->load->view('assets/header.php');
-$this->load->view('assets/navigation.php');
-if ($this->uri->segment(1) == 'home'
-|| $this->uri->segment(1) == null
-|| $this->uri->segment(1) == 'help'):
-    $this->load->view('assets/slider.php');
-endif;
-
 /**
  *   This handles the rendering of the content from modules
  */
@@ -22,5 +14,3 @@ if ($viewFile != "" && $module != "") {
 } else {
     echo nl2br($body);
 }
-
-$this->load->view('assets/footer.php');

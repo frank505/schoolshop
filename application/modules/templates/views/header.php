@@ -64,7 +64,9 @@
 					 ?>
 								</ul>
 							</li>
-
+							<li>
+								<a href="<?php echo base_url();?>home/about">About</a>
+							</li>
 							<!-- <li>
 								<a href="about.html">About</a>
 							</li>
@@ -97,7 +99,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.html"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="<?php echo base_url()."home"?>"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -153,6 +155,9 @@
 				</li>
 				<li>
 								<a href="<?php echo base_url();?>home/products">products</a>
+							</li>
+							<li>
+								<a href="<?php echo base_url();?>home/about">About</a>
 							</li>
 				
 			</ul>

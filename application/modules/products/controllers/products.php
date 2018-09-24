@@ -2,26 +2,27 @@
 /* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once APPPATH ."libraries/Page_Settings.php";
+
+
 class products extends MX_Controller
 {
    public function __construct()
    {
     parent::__construct();
-    $this->load->module("products");
+    $this->load->module(["products","templates","admin"]);
     $this->load->helper('security');
-    $this->load->module("admin");
     $this->load->library("pagination");
    }
 
     
   public function index()
   {
-    $total["total_values"] = $this->return_total_new_buyers();
+    $data["total_values"] = $this->return_total_new_buyers();
      $data["results"] = $this->products_category();
     if($this->admin->checkSessionOrCookie()==TRUE){
-      $this->load->view("templates/header_admin",$total);
-      $this->load->view("products/add_products_body",$data);
-      $this->load->view("templates/footer_admin"); 
+      $data_send = Page_Settings::set_page('add_products_body', $data, '' , 'Welcome Once Again', 'products');
+      $this->templates->backend($data_send); 
     }else if($this->admin->checkSessionOrCookie()==FALSE){
       redirect(base_url()."admin/login");      
       }
@@ -56,12 +57,12 @@ class products extends MX_Controller
    
   public function view_products()
   { 
-    $total["total_values"] = $this->return_total_new_buyers();
+    
     $data = $this->fetch_paginated_products();
+    $data["total_values"] = $this->return_total_new_buyers();
     if($this->admin->checkSessionOrCookie()==TRUE){
-      $this->load->view("templates/header_admin",$total);
-      $this->load->view("products/view_products_body",$data);
-      $this->load->view("templates/footer_admin"); 
+      $data_send = Page_Settings::set_page('view_products_body', $data, '' , 'Welcome Once Again', 'products');
+      $this->templates->backend($data_send);
     }else if($this->admin->checkSessionOrCookie()==FALSE){
       redirect(base_url()."admin/login");      
       }
@@ -120,13 +121,12 @@ class products extends MX_Controller
 
   public function update_products($id)
   {
-    $total["total_values"] = $this->return_total_new_buyers();
+    $data["total_values"] = $this->return_total_new_buyers();
     $data["results"] = $this->products_category();
     $data["update_content"] = $this->fetch_update_products($id);
     if($this->admin->checkSessionOrCookie()==TRUE){
-      $this->load->view("templates/header_admin",$total);
-      $this->load->view("products/update_products_body",$data);
-      $this->load->view("templates/footer_admin"); 
+      $data_send = Page_Settings::set_page('update_products_body', $data, '' , 'Welcome Once Again', 'products');
+      $this->templates->backend($data_send);
     }else if($this->admin->checkSessionOrCookie()==FALSE){
       redirect(base_url()."admin/login");      
       }

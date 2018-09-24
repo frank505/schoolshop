@@ -2,14 +2,15 @@
 /* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once APPPATH ."libraries/Page_Settings.php";
+
 class admin_categories extends MX_Controller
 {
    public function __construct()
    {
     parent::__construct();
-    $this->load->module("admin_categories");
+    $this->load->module(["admin_categories","templates","admin"]);
     $this->load->helper('security');
-    $this->load->module("admin");
     $this->load->library("pagination");
    }
 
@@ -17,11 +18,10 @@ class admin_categories extends MX_Controller
   public function index()
   {      
        $data = $this->category();
-       $total["total_values"] = $this->return_total_new_buyers();
+       $data["total_values"] = $this->return_total_new_buyers();
     if($this->admin->checkSessionOrCookie()==TRUE){
-      $this->load->view("templates/header_admin",$total);
-      $this->load->view("admin_categories/category_body", $data);
-      $this->load->view("templates/footer_admin"); 
+      $data_send = Page_Settings::set_page('category_body', $data, '' , 'Welcome Once Again', 'admin_categories');
+      $this->templates->backend($data_send); 
     }else if($this->admin->checkSessionOrCookie()==FALSE){
       redirect(base_url()."admin/login");      
       }

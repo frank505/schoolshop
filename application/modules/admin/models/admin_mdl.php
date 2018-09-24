@@ -194,14 +194,15 @@ public function update_admin_profile($admin_data,$data)
    if($total_val==0){
        return FALSE;
    }else {
+    $this->db->where("email", $email);
     $query = $this->db->get($table);
     foreach ($query->result() as $row)
     {
         $password_hash = $row->password;
-            if(!(password_verify($password, $password_hash))){
-                return FALSE;
-            }else{
+            if((password_verify($password, $password_hash))){
                 return TRUE;
+            }else{
+                return FALSE;
          }
     }
    }

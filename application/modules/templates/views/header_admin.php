@@ -41,7 +41,13 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger"><?php echo $total_values; ?></span>
+								<span class="badge bg-danger"><?php 
+								if($total_values==""){
+									echo"";
+								}else{
+									echo $total_values; 
+								}
+								?></span>
 							</a>
 							<ul class="dropdown-menu notifications">
 								<li><a href="<?php echo base_url()."admin/purchase-details";?>" class="notification-item"><b>

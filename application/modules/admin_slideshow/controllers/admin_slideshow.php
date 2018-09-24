@@ -1,15 +1,17 @@
 <?php
 /* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+require_once APPPATH ."libraries/Page_Settings.php";
+
 class admin_slideshow extends MX_controller
 {
 
 public function __construct()
 {
     parent::__construct();
-    $this->load->module("templates");
+    $this->load->module(["templates","admin"]);
     $this->load->helper('security');
-    $this->load->module("admin");
     $this->load->library("pagination");
 }
 
@@ -19,12 +21,11 @@ public function __construct()
      */
 public function index()
 {
-    $total["total_values"] = $this->return_total_new_buyers();
+    $data["total_values"] = $this->return_total_new_buyers();
     $data["results"] = $this->fetch_slideshow();
     if($this->admin->checkSessionOrCookie()==TRUE){
-      $this->load->view("templates/header_admin",$total);
-      $this->load->view("admin_slideshow",$data);
-      $this->load->view("templates/footer_admin"); 
+        $data_send = Page_Settings::set_page('admin_slideshow', $data, '' , 'Welcome Once Again', 'admin_slideshow');
+        $this->templates->backend($data_send);   
     }else if($this->admin->checkSessionOrCookie()==FALSE){
       redirect(base_url()."admin/login");      
       }

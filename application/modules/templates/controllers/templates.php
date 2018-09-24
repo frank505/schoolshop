@@ -3,22 +3,12 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class templates extends MX_Controller
 {
-    public $cookie_name = "__sch";
+ 
+    public $cookie_name  = "__sch";
 
     public function __construct()
     {
         parent::__construct();
-    }
-
-    /**
-     * frontend handles the rendering of view for the user end.
-     *
-     * @param array $data
-     * @return void
-     */
-    public function frontend(array $data)
-    {
-        $this->load->view('frontend', $data);
     }
 
     /**
@@ -29,9 +19,9 @@ class templates extends MX_Controller
      */
     public function backend(array $data)
     {
-        $this->load->view('frontend', $data);
+        $this->load->view('backend', $data);
     }
-
+  
     /**
      * middleend handles rendering of view such as login and register view
      *
@@ -40,8 +30,9 @@ class templates extends MX_Controller
      */
     public function middleend(array $data)
     {
-        $this->load->view('frontend', $data);
+        $this->load->view('middleend', $data);
     }
+
 
     public function header()
     {
@@ -52,12 +43,13 @@ class templates extends MX_Controller
     {
         $this->load->view("footer");
     }
+    
+  public function header_login()
+  {
+      $this->load->view("header_login");
+  }
 
-    public function header_login()
-    {
-        $this->load->view("header_login");
-    }
-
+ 
     public function clear_session_cookies()
     {
         $cookie_value = "";

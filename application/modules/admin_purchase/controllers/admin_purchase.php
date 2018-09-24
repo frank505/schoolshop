@@ -2,6 +2,8 @@
 /* THIS CLASS WAS WRITTEN BY AKPU FRANKLIN CHIMAOBI*/
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once APPPATH ."libraries/Page_Settings.php";
+
 class admin_purchase extends MX_Controller
 {
    public function __construct()
@@ -9,17 +11,16 @@ class admin_purchase extends MX_Controller
     parent::__construct();
     $this->load->helper('security');
     $this->load->library("pagination");
-    $this->load->module("admin");
+    $this->load->module(["admin","templates"]);
    }
 
 public function index()
 {
     $data = $this->fetch_paginated_purchase();
-    $total["total_values"] = $this->return_total_new_buyers();
+    $data["total_values"] = $this->return_total_new_buyers();
     if($this->admin->checkSessionOrCookie()==TRUE){
-        $this->load->view("templates/header_admin",$total);
-        $this->load->view("body_admin_purchase",$data);
-        $this->load->view("templates/footer_admin"); 
+      $data_send = Page_Settings::set_page('body_admin_purchase', $data, '' , 'Welcome Once Again', 'admin_purchase');
+      $this->templates->backend($data_send); 
       }else if($this->admin->checkSessionOrCookie()==FALSE){
         redirect(base_url()."admin/login");      
         }
