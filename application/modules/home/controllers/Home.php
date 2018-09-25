@@ -14,7 +14,6 @@ public function __construct()
     $this->load->helper('security');
     $this->load->library("pagination");
     $this->load->model("home_mdl");
-$this->load->model("home_mdl");
 }
 
 
@@ -127,7 +126,7 @@ public function login()
 
 public function fetch_limit_products()
 {
-$limit = 1;
+$limit = 8;
 $data = $this->home_mdl->fetch_products($limit);
 return $data;
 }

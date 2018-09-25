@@ -21,7 +21,10 @@ class templates extends MX_Controller
     {
         $this->load->view('backend', $data);
     }
-  
+     public function frontend(array $data)
+     {
+        $this->load->view('frontend', $data);
+     }
     /**
      * middleend handles rendering of view such as login and register view
      *

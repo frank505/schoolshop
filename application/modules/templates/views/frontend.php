@@ -1,7 +1,10 @@
 <?php
+
+$this->load->view('header.php');
 /**
  *   This handles the rendering of the content from modules
  */
+
 if (!isset($viewFile)) {
     $viewFile = "";
 }
@@ -14,3 +17,6 @@ if ($viewFile != "" && $module != "") {
 } else {
     echo nl2br($body);
 }
+
+$this->load->view('footer.php');
+
